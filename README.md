@@ -31,3 +31,8 @@ GenerationQueue
 ===============
 
 Perform an ordered execution of process.
+
+LimitedHashMap
+==============
+
+A HashMap which store a specified max number of values.

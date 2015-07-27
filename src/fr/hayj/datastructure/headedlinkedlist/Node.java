@@ -1,4 +1,4 @@
-package fr.hayj.datastructure.simplelinkedlist;
+package fr.hayj.datastructure.headedlinkedlist;
 
 public class Node<T>
 {

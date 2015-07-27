@@ -2,8 +2,8 @@ package fr.hayj.datastructure;
 
 import java.util.ArrayList;
 
-import fr.hayj.datastructure.simplelinkedlist.LinkedList;
-import fr.hayj.datastructure.simplelinkedlist.Node;
+import fr.hayj.datastructure.headedlinkedlist.HeadedLinkedList;
+import fr.hayj.datastructure.headedlinkedlist.Node;
 
 /**
  * This stack can store objects sorted according to an order. The order must be
@@ -15,7 +15,7 @@ import fr.hayj.datastructure.simplelinkedlist.Node;
  */
 public class ShortSortedStack<T> implements Comparable<T>
 {
-	ArrayList<LinkedList<T>> list;
+	ArrayList<HeadedLinkedList<T>> list;
 	private int max;
 
 	public ShortSortedStack(int max)
@@ -23,9 +23,9 @@ public class ShortSortedStack<T> implements Comparable<T>
 		if(max < 1)
 			max = 1;
 		this.max = max;
-		list = new ArrayList<LinkedList<T>>();
+		list = new ArrayList<HeadedLinkedList<T>>();
 		for(int i = 0 ; i < this.max ; i++)
-			list.add(new LinkedList<T>());
+			list.add(new HeadedLinkedList<T>());
 	}
 
 	/**
@@ -35,7 +35,7 @@ public class ShortSortedStack<T> implements Comparable<T>
 	{
 		for(int i = 0 ; i < this.list.size() ; i++)
 		{
-			LinkedList<T> currentList = this.list.get(i);
+			HeadedLinkedList<T> currentList = this.list.get(i);
 			if(!currentList.isEmpty())
 			{
 				Node<T> head = currentList.head;
@@ -48,7 +48,7 @@ public class ShortSortedStack<T> implements Comparable<T>
 
 	public boolean isEmpty()
 	{
-		for(LinkedList<T> currentList : list)
+		for(HeadedLinkedList<T> currentList : list)
 		{
 			if(!currentList.isEmpty())
 				return false;
@@ -65,7 +65,7 @@ public class ShortSortedStack<T> implements Comparable<T>
 	{
 		// if(order > max)
 		// throw....
-		this.list.get(order).insert(o);
+		this.list.get(order).put(o);
 	}
 
 	@Override
@@ -95,11 +95,11 @@ public class ShortSortedStack<T> implements Comparable<T>
 		return Integer.MAX_VALUE;
 	}
 
-	public T pick()
+	public T peek()
 	{
 		for(int i = 0 ; i < this.list.size() ; i++)
 		{
-			LinkedList<T> currentList = this.list.get(i);
+			HeadedLinkedList<T> currentList = this.list.get(i);
 			if(!currentList.isEmpty())
 			{
 				Node<T> head = currentList.head;

@@ -1,12 +1,10 @@
-package fr.hayj.datastructure.simplelinkedlist;
+package fr.hayj.datastructure.headedlinkedlist;
 
-import fr.hayj.datastructure.simplelinkedlist.Node;
-
-public class LinkedList<T>
+public class HeadedLinkedList<T>
 {
 	public Node<T> head;
 
-	public void insert(T o)
+	public void put(T o)
 	{
 		Node<T> n = new Node<T>();
 		n.value = o;
