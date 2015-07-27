@@ -16,10 +16,11 @@ public class LimitedHashMap<K, V>
 	private HashMap<K, V> map = new HashMap<K, V>();
 	private int max;
 	private LimitedLinkedList<K> list;
+	private static final int DEFAULT_MAX = 10000;
 
 	public LimitedHashMap()
 	{
-		this.init(10000); // Defaults
+		this.init(DEFAULT_MAX); // Defaults
 	}
 
 	public LimitedHashMap(int max)
