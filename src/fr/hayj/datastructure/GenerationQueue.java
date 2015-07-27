@@ -3,7 +3,7 @@ package fr.hayj.datastructure;
 import java.util.LinkedList;
 
 /**
- * Perform an ordered execution of process
+ * Perform an ordered execution of process.
  * 
  * @author hayj
  */

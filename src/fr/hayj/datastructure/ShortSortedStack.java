@@ -6,10 +6,12 @@ import fr.hayj.datastructure.simplelinkedlist.LinkedList;
 import fr.hayj.datastructure.simplelinkedlist.Node;
 
 /**
- * This stack can handle a 
- * @author julien
- *
- * @param <T>
+ * This stack can store objects sorted according to an order. The order must be
+ * short (1 to 100) and not function of the data bulk. For each order, a
+ * LinkedList allows a O(1) pop and a O(1) put. Each pop return the shortest
+ * order (and latest put element).
+ * 
+ * @author hayj
  */
 public class ShortSortedStack<T> implements Comparable<T>
 {
@@ -26,6 +28,9 @@ public class ShortSortedStack<T> implements Comparable<T>
 			list.add(new LinkedList<T>());
 	}
 
+	/**
+	 * @return return the first element in the min order
+	 */
 	public T pop()
 	{
 		for(int i = 0 ; i < this.list.size() ; i++)
@@ -51,6 +56,11 @@ public class ShortSortedStack<T> implements Comparable<T>
 		return true;
 	}
 
+	/**
+	 * Insert an object according to an order
+	 * @param o
+	 * @param order
+	 */
 	public void push(T o, int order)
 	{
 		// if(order > max)
@@ -72,6 +82,9 @@ public class ShortSortedStack<T> implements Comparable<T>
 			return 1;
 	}
 
+	/**
+	 * @return return the current min order.
+	 */
 	public int getMin()
 	{
 		for(int min = 0 ; min < this.list.size() ; min++)
@@ -96,22 +109,36 @@ public class ShortSortedStack<T> implements Comparable<T>
 		return null;
 	}
 
-	public java.util.LinkedList<T> toLinkedList(int order)
+	/**
+	 * @return return all elements which match with the min order.
+	 */
+	public java.util.LinkedList<T> toLinkedListMin()
 	{
-		java.util.LinkedList<T> concat = new java.util.LinkedList<T>();
-		Node<T> currentNode = this.list.get(order).head;
-		while(currentNode != null)
-		{
-			concat.add(currentNode.value);
-			currentNode = currentNode.next;
-		}
-		return concat;
+		return toLinkedList(this.getMin());
+	}	
+
+/**
+ * @return return all elements which match with the specified order.
+ */
+public java.util.LinkedList<T> toLinkedList(int order)
+{
+	java.util.LinkedList<T> concat = new java.util.LinkedList<T>();
+	Node<T> currentNode = this.list.get(order).head;
+	while(currentNode != null)
+	{
+		concat.add(currentNode.value);
+		currentNode = currentNode.next;
 	}
-	
+	return concat;
+}
+
+/**
+ * @return return all elements which match with the specified order.
+ */
 	public java.util.LinkedList<T> toLinkedList()
 	{
 		java.util.LinkedList<T> concat = new java.util.LinkedList<T>();
-		for(int i = 0 ; i < this.list.size(); i++)
+		for(int i = 0 ; i < this.list.size() ; i++)
 		{
 			concat.addAll(toLinkedList(i));
 		}

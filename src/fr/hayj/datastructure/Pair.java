@@ -2,6 +2,11 @@ package fr.hayj.datastructure;
 
 import java.util.Map;
 
+/**
+ * Equivalent to Pair C++ class
+ * 
+ * @author hayj
+ */
 public class Pair<K, V> implements Map.Entry<K, V>
 {
 	private final K key;

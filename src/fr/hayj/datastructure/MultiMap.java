@@ -6,7 +6,9 @@ import java.util.LinkedList;
 import java.util.TreeMap;
 
 /**
- * A that supports multiple values per key.
+ * A map which supports multiple values per key.
+ * 
+ * @author hayj
  */
 public class MultiMap<K, V>
 {
