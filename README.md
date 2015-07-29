@@ -17,6 +17,11 @@ This stack can store objects sorted according to an order. The order must be sho
 
 This data structure is used for example in *fr.hayj.dawglevdist*.
 
+Trie
+====
+
+This data structure is a generic implementation of the "Trie". It can store any object which implements Trie.Tokenizable. It can also store a sub-trie at all leaf to handle multi-word dictionary.
+
 MultiMap
 ========
 

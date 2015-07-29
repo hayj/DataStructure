@@ -3,7 +3,7 @@ package fr.hayj.datastructure;
 
 import java.lang.ref.WeakReference;
 import java.util.LinkedList;
-import java.util.TreeMap;
+import java.util.HashMap;
 
 /**
  * A map which supports multiple values per key.
@@ -12,11 +12,11 @@ import java.util.TreeMap;
  */
 public class MultiMap<K, V>
 {
-	private final TreeMap<K, LinkedList<WeakReference<V>>> map;
+	private final HashMap<K, LinkedList<WeakReference<V>>> map;
 
 	public MultiMap()
 	{
-		map = new TreeMap<K, LinkedList<WeakReference<V>>>();
+		map = new HashMap<K, LinkedList<WeakReference<V>>>();
 	}
 
 	public void clear()
