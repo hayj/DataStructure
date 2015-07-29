@@ -13,7 +13,7 @@ This class is for long time process (not many Process) because the search for ex
 ShortSortedStack
 ================
 
-This stack can store objects sorted according to an order. The order must be short (1 to 100) and not function of the data bulk. For each order, a LinkedList allows a O(1) pop and a O(1) put. Each pop return the shortest order (and latest put element).
+This stack can store objects sorted according to an order. The order must be short (1 to 100) and not function of the data bulk. For each order, a LinkedList allows a O(1) pop and a O(1) push. Each pop return the shortest order (and latest pushed element).
 
 This data structure is used for example in *fr.hayj.dawglevdist*.
 
@@ -40,4 +40,12 @@ Perform an ordered execution of process.
 LimitedHashMap
 ==============
 
-A HashMap which store a specified max number of values.
+A HashMap which store a specified max number of values. Use LimitedLinkedList to perform a fast clean at each put.
+
+Others
+======
+
+ * **LimitedLinkedList** : a LinkedList which store a specified max number of values.
+ * **HeadedLinkedList** : a simlpe linked list with only the head and the next at each node.
+ * **StrinTree** : a tree structure which store strings.
+ 
