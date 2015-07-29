@@ -45,7 +45,7 @@ A HashMap which store a specified max number of values. Use LimitedLinkedList to
 Others
 ======
 
- * **LimitedLinkedList** : a LinkedList which store a specified max number of values.
+ * **LimitedLinkedList** : a linked list which store a specified max number of values.
  * **HeadedLinkedList** : a simlpe linked list with only the head and the next at each node.
- * **StrinTree** : a tree structure which store strings.
+ * **StringTree** : a tree structure which store strings.
  
