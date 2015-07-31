@@ -13,7 +13,7 @@ public class Node
 
 	public Trie getSubTrie()
 	{
-		return subTrie;
+		return this.subTrie;
 	}
 
 	public void setSubTrie(Trie subTrie)
@@ -47,12 +47,12 @@ public class Node
 
 	public LinkedHashMap<Character, Node> getChildren()
 	{
-		return children;
+		return this.children;
 	}
 
-	public Tokenizable getWordable()
+	public Tokenizable getTokenizable()
 	{
-		return tokenizable;
+		return this.tokenizable;
 	}
 
 	public void setWordable(Tokenizable tokenizable)
@@ -60,17 +60,17 @@ public class Node
 		this.tokenizable = tokenizable;
 	}
 
-	public String getWord()
-	{
-		if(this.tokenizable == null)
-			return null;
-		else
-			return this.tokenizable.getText();
-	}
+	// public String getToken()
+	// {
+	// if(this.tokenizable == null)
+	// return null;
+	// else
+	// return this.tokenizable.getText();
+	// }
 
 	public Node insert(String token)
 	{
-		// We get the curent char to insert :
+		// We get the current char to insert :
 		char c = token.charAt(0);
 		// We get the node :
 		Node node;
@@ -91,7 +91,7 @@ public class Node
 	{
 		return this.children.size();
 	}
-	
+
 	public String toString()
 	{
 		String str = "";

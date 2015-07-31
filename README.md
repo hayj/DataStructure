@@ -46,6 +46,6 @@ Others
 ======
 
  * **LimitedLinkedList** : a linked list which store a specified max number of values.
- * **HeadedLinkedList** : a simlpe linked list with only the head and the next at each node.
+ * **HeadedLinkedList** : a simple linked list with only the head and the next at each node.
  * **StringTree** : a tree structure which store strings.
  
