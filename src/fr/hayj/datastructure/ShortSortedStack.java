@@ -18,13 +18,18 @@ public class ShortSortedStack<T> implements Comparable<T>
 	ArrayList<HeadedLinkedList<T>> list;
 	private int max;
 
+	public ArrayList<HeadedLinkedList<T>> getList()
+	{
+		return list;
+	}
+
 	public ShortSortedStack(int max)
 	{
 		if(max < 1)
 			max = 1;
 		this.max = max;
 		list = new ArrayList<HeadedLinkedList<T>>();
-		for(int i = 0 ; i < this.max ; i++)
+		for(int i = 0 ; i <= this.max ; i++)
 			list.add(new HeadedLinkedList<T>());
 	}
 
@@ -63,9 +68,8 @@ public class ShortSortedStack<T> implements Comparable<T>
 	 */
 	public void push(T o, int order)
 	{
-		// if(order > max)
-		// throw....
-		this.list.get(order).put(o);
+		if(order <= max)
+			this.list.get(order).put(o);
 	}
 
 	@Override

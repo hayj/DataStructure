@@ -6,12 +6,12 @@ import fr.hayj.datastructure.headedlinkedlist.Node;
 public class IntegerArray implements Cloneable
 {
 	HeadedLinkedList<Integer> list = new HeadedLinkedList<Integer>();
-	
+
 	public void add(int value)
 	{
 		list.put(value);
 	}
-	
+
 	public int sum()
 	{
 		int sum = 0;
@@ -23,8 +23,7 @@ public class IntegerArray implements Cloneable
 		}
 		return sum;
 	}
-	
-	
+
 	public Integer min()
 	{
 		Integer min = null;
@@ -40,7 +39,7 @@ public class IntegerArray implements Cloneable
 		}
 		return min;
 	}
-	
+
 	public Integer max()
 	{
 		Integer max = null;
@@ -56,7 +55,7 @@ public class IntegerArray implements Cloneable
 		}
 		return max;
 	}
-	
+
 	@Override
 	public Object clone()
 	{
@@ -68,5 +67,18 @@ public class IntegerArray implements Cloneable
 			currentNode = currentNode.next;
 		}
 		return clone;
+	}
+
+	@Override
+	public String toString()
+	{
+		String result = "";
+		Node<Integer> currentNode = list.head;
+		while(currentNode != null)
+		{
+			result += currentNode.value + ", ";
+			currentNode = currentNode.next;
+		}
+		return result;
 	}
 }
