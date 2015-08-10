@@ -50,7 +50,7 @@ public class LimitedLinkedList<T>
 		size++;
 	}
 
-	private T removeLast()
+	public T removeLast()
 	{
 		T removedValue;
 		if(this.size > 1)
@@ -165,5 +165,20 @@ public class LimitedLinkedList<T>
 			str = str.substring(0, str.length() - 2);
 		}
 		return str + "\n";
+	}
+
+	public void setMax(int max)
+	{
+		if(max > 0)
+		{
+			while(this.size() > max)
+				this.removeLast();
+			this.max = max;
+		}
+	}
+
+	public int getMax()
+	{
+		return this.max;
 	}
 }

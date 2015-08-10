@@ -6,6 +6,7 @@ import fr.hayj.datastructure.limitedlinkedlist.LimitedLinkedList;
 
 /**
  * A HashMap which store a specified max number of values.
+ * 
  * @author hayj
  *
  * @param <K>
@@ -51,6 +52,11 @@ public class LimitedHashMap<K, V>
 		return replacedValue;
 	}
 
+	public synchronized boolean containsKey(K key)
+	{
+		return this.map.containsKey(key);
+	}
+
 	public synchronized V get(K key)
 	{
 		return this.map.get(key);
@@ -65,9 +71,25 @@ public class LimitedHashMap<K, V>
 	{
 		return this.list.size();
 	}
-	
+
 	public String toString()
 	{
 		return this.list.toString();
+	}
+
+	public void setMax(int max)
+	{
+		if(max > 0)
+		{
+			this.max = max;
+			while(this.map.size() > this.max)
+				this.map.remove(this.list.removeLast());
+			this.list.setMax(this.max);
+		}
+	}
+
+	public int getMax()
+	{
+		return this.max;
 	}
 }
