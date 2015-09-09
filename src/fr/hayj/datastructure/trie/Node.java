@@ -1,5 +1,6 @@
 package fr.hayj.datastructure.trie;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map.Entry;
 
@@ -8,7 +9,7 @@ import fr.hayj.datastructure.trie.Trie.Tokenizable;
 public class Node
 {
 	private LinkedHashMap<Character, Node> children = new LinkedHashMap<Character, Node>();
-	private Tokenizable tokenizable = null;
+	private ArrayList<Tokenizable> tokenizables = new ArrayList<Tokenizable>();
 	private Trie subTrie;
 
 	public Trie getSubTrie()
@@ -23,7 +24,7 @@ public class Node
 
 	public boolean isEndToken()
 	{
-		if(this.subTrie != null || this.tokenizable != null)
+		if(this.subTrie != null || isEndTokenizable())
 			return true;
 		return false;
 	}
@@ -35,7 +36,7 @@ public class Node
 
 	public boolean isEndTokenizable()
 	{
-		if(this.tokenizable != null)
+		if(this.hasTokenizables() && this.tokenizables.size() != 0)
 			return true;
 		return false;
 	}
@@ -50,23 +51,40 @@ public class Node
 		return this.children;
 	}
 
+	@Deprecated
 	public Tokenizable getTokenizable()
 	{
-		return this.tokenizable;
+		return this.getFirstTokenizable();
 	}
-
-	public void setWordable(Tokenizable tokenizable)
+	
+	public Tokenizable getFirstTokenizable()
 	{
-		this.tokenizable = tokenizable;
+		if(!this.hasTokenizables() || this.tokenizables.size() == 0)
+			return null;
+		return this.tokenizables.get(0);
+	}
+	
+	public ArrayList<Tokenizable> getTokenizables()
+	{
+		return this.tokenizables;
 	}
 
-	// public String getToken()
-	// {
-	// if(this.tokenizable == null)
-	// return null;
-	// else
-	// return this.tokenizable.getText();
-	// }
+	@Deprecated
+	public void setTokenizable(Tokenizable tokenizable)
+	{
+		this.addTokenizable(tokenizable);
+	}
+	
+	public void addTokenizable(Tokenizable tokenizable)
+	{
+		if(this.hasTokenizables())
+			this.tokenizables.add(tokenizable);
+	}
+
+	private boolean hasTokenizables()
+	{
+		return this.tokenizables != null;
+	}
 
 	public Node insert(String token)
 	{
@@ -98,5 +116,31 @@ public class Node
 		for(Entry<Character, Node> entry : this.children.entrySet())
 			str += entry.getKey() + " (" + entry.getValue().toString() + ")" + " ";
 		return str;
+	}
+
+	//TODO test
+	public int size()
+	{
+		int size = 0;
+		if(this.subTrie != null)
+		  size += this.subTrie.size();
+		if(this.isEndTokenizable())
+			size += 1;
+		if(this.childrenSize() > 0)
+		{
+			for(Entry<Character, Node> child : this.children.entrySet())
+				size += child.getValue().size();
+		}
+		return size;
+	}
+
+	public ArrayList<Node> getLeaves()
+	{
+		ArrayList<Node> leaves = new ArrayList<Node>();
+		if(this.isEndToken())
+			leaves.add(this);
+		for(Entry<Character, Node> child : this.children.entrySet())
+			leaves.addAll(child.getValue().getLeaves());
+		return leaves;
 	}
 }

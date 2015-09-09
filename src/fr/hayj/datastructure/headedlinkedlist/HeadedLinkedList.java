@@ -16,4 +16,18 @@ public class HeadedLinkedList<T>
 	{
 		return this.head == null;
 	}
+
+	public int size()
+	{
+		if(this.isEmpty())
+			return 0;
+		Node currentNode = head;
+		int size = 1;
+		while(currentNode.next != null)
+		{
+			size++;
+			currentNode = currentNode.next;
+		}
+		return size;
+	}
 }

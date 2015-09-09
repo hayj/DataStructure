@@ -1,4 +1,4 @@
-package fr.hayj.datastructure.integerarray;
+package fr.hayj.datastructure.integerarraytest;
 
 import static org.junit.Assert.*;
 
@@ -40,6 +40,20 @@ public class Test1
 		array.add(1);
 		array.add(2);
 		
+		assertTrue(array.min() == 1);
+		assertTrue(array.max() == 3);
+		assertTrue(array.sum() == 6);
+	}	
+	@Test
+	public void size()
+	{
+		IntegerArray array = new IntegerArray();
+		assertTrue(array.size() == 0);
+		array.add(3);
+		assertTrue(array.size() == 1);
+		array.add(1);
+		array.add(2);
+		assertTrue(array.size() == 3);
 		assertTrue(array.min() == 1);
 		assertTrue(array.max() == 3);
 		assertTrue(array.sum() == 6);

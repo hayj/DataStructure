@@ -101,6 +101,28 @@ public class Test1
 		assertTrue(node.isEndToken() == true);
 		assertTrue(node.isEndTokenizable() == true);
 	}
+	
+	@Test
+	public void testTrieSize()
+	{
+		String[] texts = { "aa", "bb", "bb a", "aa a", "aa a c", "aa b c", "aa a d", "ac", "ab", "cc", "cc r" };
+		Trie trie = this.getTokArray(texts);
+		
+		assertTrue(trie.size() == texts.length);
+		assertTrue(trie.getRoot().size() == texts.length);
+		assertTrue(trie.getRoot().getChild('a').size() == 7);
+		assertTrue(trie.getRoot().getChild('a').getChild('a').getSubTrie().size() == 4);
+		assertTrue(trie.getRoot().getChild('a').getChild('c').hasSubTrie() == false);
+		assertTrue(trie.getRoot().getChild('c').getChild('c').getSubTrie().size() == 1);
+		
+		
+		assertTrue(trie.getTokenizables().size() == texts.length);
+		assertTrue(trie.getRoot().getChild('a').getChild('a').getLeaves().size() == 1);
+		assertTrue(trie.getRoot().getChild('a').getChild('a').getSubTrie().getTokenizables().size() == 4);
+		assertTrue(trie.getRoot().getChild('c').getChild('c').getSubTrie().getRoot().getChild('r').getLeaves().size() == 1);
+		assertTrue(trie.getRoot().getChild('c').getChild('c').getSubTrie().getRoot().getChild('r').getLeaves().size() == 1);
+		assertTrue(trie.getRoot().getChild('c').getChild('c').getSubTrie().getRoot().getChild('r').getLeaves().get(0).getFirstTokenizable().getText().equals("cc r"));
+	}
 
 	private Trie getTokArray(String[] texts)
 	{

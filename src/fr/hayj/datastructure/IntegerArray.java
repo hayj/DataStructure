@@ -81,4 +81,9 @@ public class IntegerArray implements Cloneable
 		}
 		return result;
 	}
+
+	public int size()
+	{
+		return this.list.size();
+	}
 }

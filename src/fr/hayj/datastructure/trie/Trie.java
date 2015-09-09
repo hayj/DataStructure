@@ -1,6 +1,9 @@
 package fr.hayj.datastructure.trie;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import fr.hayj.datastructure.trie.Trie.Tokenizable;
 
 /**
  * This data structure is a Trie which can store any object which implements
@@ -12,7 +15,7 @@ import java.util.List;
  */
 public class Trie
 {
-	public interface Tokenizable
+	public interface Tokenizable extends Cloneable 
 	{
 		public abstract String getText();
 
@@ -50,7 +53,7 @@ public class Trie
 			}
 			// If it's the last trie, we insert the current wordable at the last
 			// node :
-			currentNode.setWordable(tokenizable);
+			currentNode.addTokenizable(tokenizable);
 		}
 	}
 
@@ -64,5 +67,24 @@ public class Trie
 	public Node getRoot()
 	{
 		return this.root;
+	}
+
+	public int size()
+	{
+		return this.root.size();
+	}
+
+	public ArrayList<Tokenizable> getTokenizables()
+	{
+		ArrayList<Node> leaves = this.getRoot().getLeaves();
+		ArrayList<Tokenizable> tokenizables = new ArrayList<Tokenizable>();
+		for(Node leaf : leaves)
+		{
+			if(leaf.isEndTokenizable())
+				tokenizables.addAll(leaf.getTokenizables());
+			if(leaf.hasSubTrie())
+				tokenizables.addAll(leaf.getSubTrie().getTokenizables());
+		}
+		return tokenizables;
 	}
 }
